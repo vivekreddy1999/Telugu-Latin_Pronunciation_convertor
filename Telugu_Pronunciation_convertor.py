@@ -11,14 +11,7 @@ class TeluguPronunciationConverter:
         # Set up logging
         logging.basicConfig(level=logging.INFO)
         self.logger = logging.getLogger(__name__)
-        
-        # Dictionary for basic pronunciation rules
-        self.pronunciation_rules = {
-            'అ': 'a', 'ఆ': 'aa', 'ఇ': 'i', 'ఈ': 'ii', 'ఉ': 'u', 
-            'ఊ': 'uu', 'ఋ': 'ru', 'ఎ': 'e', 'ఏ': 'ee', 'ఐ': 'ai',
-            'ఒ': 'o', 'ఓ': 'oo', 'ఔ': 'au', 'ం': 'm', 'ః': 'h'
-        }
-    
+          
     def is_telugu(self, text):
         """Check if text contains Telugu characters."""
         if not isinstance(text, str):
@@ -141,15 +134,6 @@ def test_converter():
         converter = TeluguPronunciationConverter()
         test_words = ["నమస్కారం", "ధన్యవాదాలు", "శుభోదయం", "తెలుగు"]
         
-        print("Testing converter...")
-        for word in test_words:
-            pronunciation = converter.basic_pronunciation(word)
-            latin = converter.telugu_to_latin(word)
-            print(f"\nTelugu: {word}")
-            print(f"Pronunciation: {pronunciation}")
-            print(f"Latin (IAST): {latin}")
-        
-        print("\nTesting DataFrame processing...")
         df = pd.DataFrame({'telugu_word': test_words})
         result_df = converter.process_dataframe(df, 'telugu_word')
         print(result_df)
